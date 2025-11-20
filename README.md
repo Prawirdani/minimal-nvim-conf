@@ -33,3 +33,6 @@ git clone https://github.com/Prawirdani/minimal-nvim-conf ~/.config/nvim
 # Launch Neovim (plugins will auto-install)
 nvim
 ```
+
+## Syncronize Clipboard
+To sync server with local machine clipboard ensure, sshing with -Y or -X flag, e.g., `ssh -Y root@remote`
