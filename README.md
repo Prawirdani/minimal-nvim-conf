@@ -14,16 +14,22 @@ Personal minimal nvim config for VPS.
 ## Requirements
 - Neovim 0.11.0+
 - Git 
-- Python venv `sudo apt install python<ver>-venv`
-- ripgrep `sudo apt install ripgrep`
-- xclip `sudo apt install xclip`
-- make `sudo apt install make`
-- Unzip `sudo apt install unzip`
+- Python venv 
+- ripgrep 
+- Xclip 
+- make 
+- unzip 
 - Nerd Font (optional)
 
 ## Installation
 ```bash
+# Install all dependencies
+sudo apt update && sudo apt install -y git ripgrep xclip make unzip python3-venv
+
+# Backup existing config and clone
 mv ~/.config/nvim ~/.config/nvim.backup
 git clone https://github.com/Prawirdani/minimal-nvim-conf ~/.config/nvim
-# Install dependencies and launch nvim
+
+# Launch Neovim (plugins will auto-install)
+nvim
 ```
