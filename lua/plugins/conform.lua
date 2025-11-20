@@ -2,10 +2,6 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  dependencies = {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    'williamboman/mason.nvim',
-  },
   keys = {
     {
       '<leader>cf',
@@ -35,17 +31,9 @@ return {
       yaml = { 'prettier' },
       yml = { 'prettier' },
       nginx = { 'nginxfmt' },
-      sh = 'beautysh',
+      lua = { 'stylua' },
+      sh = { 'beautysh' },
     },
-    formatters = {
-      nginxfmt = {},
-    },
+    formatters = {},
   },
-  config = function()
-    require('mason').setup()
-    require('mason-tool-installer').setup {
-      ensure_installed = { 'prettier', 'nginxfmt', 'beautysh' },
-      run_on_start = true,
-    }
-  end,
 }

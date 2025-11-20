@@ -17,6 +17,14 @@ return {
       })
 
       local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = { callSnippet = 'Replace' },
+              diagnostics = { globals = { 'vim' } },
+            },
+          },
+        },
         docker_language_server = {},
         docker_compose_language_service = {},
         bashls = {},
@@ -31,16 +39,25 @@ return {
       require('mason').setup()
 
       -- Derive ensure_installed list automatically from the keys
-      local ensure_installed = vim.tbl_keys(servers)
+      local lsp_servers = vim.tbl_keys(servers)
 
-      require('mason-tool-installer').setup {
-        ensure_installed = ensure_installed,
+      local formatters = {
+        'stylua',
+        'prettier',
+        'nginx-config-formatter',
+        'beautysh',
       }
 
-      -- Setup mason-lspconfig v2
-      -- It will automatically enable installed servers via vim.lsp.enable()
+      -- Install both LSP servers and formatters via mason-tool-installer
+      require('mason-tool-installer').setup {
+        ensure_installed = vim.list_extend(vim.list_extend({}, lsp_servers), formatters),
+        auto_update = false,
+        run_on_start = true,
+      }
+
+      -- Setup mason-lspconfig v2 (only LSP servers, no formatters!)
       require('mason-lspconfig').setup {
-        ensure_installed = ensure_installed,
+        ensure_installed = lsp_servers, -- Only LSP servers here
         automatic_enable = {},
       }
 
